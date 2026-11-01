@@ -7,7 +7,7 @@ class AppTheme {
     fontFamily: 'IBMPlexSansArabic',
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.backgroundColor,
-    brightness: Brightness.dark,
+    // brightness: Brightness.dark,
     snackBarTheme: const SnackBarThemeData(
       backgroundColor: AppColors.inputFillColor,
       contentTextStyle: TextStyle(color: Colors.white),

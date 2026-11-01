@@ -4,14 +4,14 @@ class BasicPasswordField extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
   final FocusNode? focusNode;
-    final String? Function(String?)? validator;
-
+  final String? Function(String?)? validator;
 
   const BasicPasswordField({
     super.key,
     required this.hintText,
     required this.controller,
     this.focusNode,
+    this.validator,
   });
 
   @override
@@ -25,12 +25,13 @@ class _BasicPasswordFieldState extends State<BasicPasswordField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      focusNode: widget.focusNode,
       obscureText: _obscureText,
+      validator: widget.validator,
       keyboardType: TextInputType.visiblePassword,
       textInputAction: TextInputAction.done,
       enableSuggestions: false,
       autocorrect: false,
-      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: widget.hintText,
 

@@ -49,17 +49,17 @@ class Validators {
     if (value == null || value.isEmpty) {
       return 'Please enter your Phone';
     }
-    if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value)) {
+    if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value.trim())) {
       return 'Please enter your correct number';
     }
     return null;
   }
 
   static String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return 'Please enter your Full Name';
     }
-    if (value.length < 3) {
+    if (value.trim().length < 3) {
       return 'your name must be 3 letters or more';
     }
     return null;
@@ -67,8 +67,8 @@ class Validators {
 
   static String? validateConfirmPassword(String? value, String? password) {
     if (value == null || value.isEmpty) {
-  return 'Please confirm your password';
-}
+      return 'Please confirm your password';
+    }
     if (value != password) {
       return 'Passwords do not match';
     }
