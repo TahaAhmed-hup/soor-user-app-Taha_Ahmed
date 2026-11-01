@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BasicAppButton(onPressed: () => context.go(AppRoutes.signUp), title: 'go',)
+        child: BasicAppButton(onPressed: () => context.push(AppRoutes.signUp), title: 'go',)
       ),
     );
   }

@@ -7,4 +7,5 @@ class AppColors {
   static const hintTextColor = Color(0xff878787);
   static const inputFillColor = Color(0xff2C2B2B);
   static const errorColor = Color(0xffFF0000);
+  
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soor_user_app/core/widgets/basic_app_bar.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -11,6 +12,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BasicAppBar(),
       body: Center(
         child: Text('hiiiiiiiiii'),
       ),
