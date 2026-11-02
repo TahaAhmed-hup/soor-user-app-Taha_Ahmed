@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class BasicTextField extends StatelessWidget {
-  final String hintText;
-  final TextEditingController controller;
+class BasicAppTextField extends StatelessWidget {
+  final String? hintText;
+  final TextEditingController? controller;
   final FocusNode? focusNode;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
 
-  const BasicTextField({
+  const BasicAppTextField({
     super.key,
-    required this.hintText,
-    required this.controller,
+     this.hintText,
+     this.controller,
     this.focusNode,
     this.validator,
     this.keyboardType,
@@ -22,6 +22,7 @@ class BasicTextField extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       validator: validator,
+      textAlign: TextAlign.right,
       keyboardType: keyboardType,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(

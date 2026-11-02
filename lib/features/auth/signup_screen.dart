@@ -14,7 +14,11 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       appBar: BasicAppBar(),
       body: Center(
-        child: Text('hiiiiiiiiii'),
+        child: Text('ينااااس ياا بششر',style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),),
       ),
     );
   }

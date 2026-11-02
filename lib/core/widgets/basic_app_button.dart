@@ -6,6 +6,7 @@ class BasicAppButton extends StatelessWidget {
   final String title;
   final double? height;
   final double? width;
+  final Icon? icon;
   final EdgeInsetsGeometry padding;
   final Color backgroundColor;
   final Color textColor;
@@ -29,6 +30,7 @@ class BasicAppButton extends StatelessWidget {
     this.borderRadius = 8,
     this.fontSize = 18,
     this.isLoading = false,
+    this.icon,
   });
 
   @override
@@ -57,13 +59,20 @@ class BasicAppButton extends StatelessWidget {
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               )
-            : Text(
-                title,
-                style: TextStyle(
-                  color: isLoading ? textColor.withValues(alpha: 0.5) : textColor,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.w500,
-                ),
+            : Row(
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: isLoading
+                          ? textColor.withValues(alpha: 0.5)
+                          : textColor,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  if (icon != null) ...[const SizedBox(width: 5), icon!],
+                ],
               ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soor_user_app/core/routes/app_routes.dart';
-import 'package:soor_user_app/features/auth/login_screen.dart';
+import 'package:soor_user_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:soor_user_app/features/auth/signup_screen.dart';
 
 class AppRouter {
