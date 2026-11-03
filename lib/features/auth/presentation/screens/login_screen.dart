@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soor_user_app/core/const/app_vectors.dart';
 import 'package:soor_user_app/core/helper/validators.dart';
 import 'package:soor_user_app/core/routes/app_routes.dart';
 import 'package:soor_user_app/core/themes/colors/app_colors.dart';
@@ -34,12 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppBar(),
+      appBar: BasicAppBar(
+        hideBack: true,
+      ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
+            
             return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
@@ -57,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 'مرحباً بك مرة أخرى!',
                                 style: Theme.of(context).textTheme.bodyLarge
                                     ?.copyWith(
-                                      color: Colors.white,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 24.sp,
                                     ),
@@ -77,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 20.h),
                         Text(
                           'رقم الجوال',
-                          style: TextStyle(fontSize: 14, color: Colors.white),
+                          style: TextStyle(fontSize: 14.sp, ),
                         ),
                         SizedBox(height: 6.h),
                         BasicAppTextField(
@@ -88,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 16.h),
                         Text(
                           'كلمة المرور',
-                          style: TextStyle(fontSize: 14, color: Colors.white),
+                          style: TextStyle(fontSize: 14.sp),
                         ),
                         SizedBox(height: 6.h),
                         BasicPasswordField(
@@ -116,15 +119,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           fontSize: 14.sp,
                           title: 'تسجيل الدخول',
-                          icon: const Icon(Icons.arrow_back),
+                          vector: AppVectors.arrowLeft,
                         ),
                         Spacer(),
-                        AppFooter(
-                          message: 'لا تمتلك حساب ؟',
-                          action: 'حساب جديد',
-                          onTap: () {
-                            context.go(AppRoutes.signUp);
-                          },
+                        SizedBox(
+                          width: double.infinity,
+                          child: Center(
+                            child: AppFooter(
+                              message: 'لا تمتلك حساب ؟',
+                              action: 'حساب جديد',
+                              onTap: () {
+                                context.go(AppRoutes.signUp);
+                              },
+                            ),
+                          ),
                         ),
                         SizedBox(height: 8.h),
                       ],

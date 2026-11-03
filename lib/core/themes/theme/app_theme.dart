@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:soor_user_app/core/themes/colors/app_colors.dart';
 
@@ -6,6 +5,12 @@ class AppTheme {
   static final appTheme = ThemeData(
     fontFamily: 'IBMPlexSansArabic',
     primaryColor: AppColors.primaryColor,
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(color: AppColors.appTextColor),
+      bodyMedium: TextStyle(color: AppColors.appTextColor),
+      bodySmall: TextStyle(color: AppColors.appTextColor),
+    ),
+    appBarTheme: AppBarTheme(backgroundColor: AppColors.appBarColor),
     scaffoldBackgroundColor: AppColors.backgroundColor,
     // brightness: Brightness.dark,
     snackBarTheme: const SnackBarThemeData(
@@ -13,15 +18,11 @@ class AppTheme {
       contentTextStyle: TextStyle(color: Colors.white),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      labelStyle: TextStyle(color: AppColors.appTextColor),
       filled: true,
-      
       fillColor: AppColors.inputFillColor,
-      errorStyle: TextStyle(
-        color: AppColors.errorColor,
-        fontSize: 12,
-      ),
+      errorStyle: TextStyle(color: AppColors.errorColor, fontSize: 12),
       hintStyle: const TextStyle(
-        
         color: AppColors.hintTextColor,
         fontWeight: FontWeight.w400,
       ),

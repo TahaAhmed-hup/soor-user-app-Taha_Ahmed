@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:soor_user_app/core/const/app_vectors.dart';
 import 'package:soor_user_app/core/themes/colors/app_colors.dart';
 
 class BasicAppButton extends StatelessWidget {
@@ -6,7 +8,7 @@ class BasicAppButton extends StatelessWidget {
   final String title;
   final double? height;
   final double? width;
-  final Icon? icon;
+  final String? vector;
   final EdgeInsetsGeometry padding;
   final Color backgroundColor;
   final Color textColor;
@@ -30,11 +32,12 @@ class BasicAppButton extends StatelessWidget {
     this.borderRadius = 8,
     this.fontSize = 18,
     this.isLoading = false,
-    this.icon,
+    this.vector,
   });
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Button vector: $vector');
     return SizedBox(
       height: height ?? 53.3,
       width: width,
@@ -59,20 +62,32 @@ class BasicAppButton extends StatelessWidget {
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               )
-            : Row(
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: isLoading
-                          ? textColor.withValues(alpha: 0.5)
-                          : textColor,
-                      fontSize: fontSize,
-                      fontWeight: FontWeight.w500,
+            : Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: isLoading
+                            ? textColor.withValues(alpha: 0.5)
+                            : textColor,
+                        fontSize: fontSize,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  if (icon != null) ...[const SizedBox(width: 5), icon!],
-                ],
+                    SizedBox(width: 8,),
+                    if (vector != null) ...[
+                      const SizedBox(width: 5),
+                      SvgPicture.asset(
+                        vector!,
+                        width: 20,
+                        height: 20,
+                      ),
+                    ],
+                  ],
+                ),
               ),
       ),
     );

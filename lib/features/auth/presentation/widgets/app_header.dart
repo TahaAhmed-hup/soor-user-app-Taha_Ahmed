@@ -12,9 +12,6 @@ class AppHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        SvgPicture.asset(AppVectors.logo, width: 20.w, height: 30.h),
-        SvgPicture.asset(AppVectors.logoNext, width: 20.w, height: 30.h),
-        SizedBox(width: 5.w),
         Text(
           'SOOR',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -23,6 +20,9 @@ class AppHeader extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        SizedBox(width: 5.w),
+        SvgPicture.asset(AppVectors.logo, width: 20.w, height: 30.h),
+        SvgPicture.asset(AppVectors.logoNext, width: 20.w, height: 30.h),
       ],
     );
   }

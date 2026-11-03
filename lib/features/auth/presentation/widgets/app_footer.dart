@@ -14,19 +14,20 @@ class AppFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Text(message, style: TextStyle(color: Colors.grey[600])),
-          InkWell(
-            onTap: onTap,
-            child: Text(
-              action,
-              style: const TextStyle(color: AppColors.primaryColor),
-            ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+    mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(message, style: TextStyle(color: Colors.grey[600])),
+        SizedBox(width: 5,),
+        InkWell(
+          onTap: onTap,
+          child: Text(
+            action,
+            style: const TextStyle(color: AppColors.primaryColor),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
