@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:soor_user_app/core/const/app_vectors.dart';
 import 'package:soor_user_app/core/themes/colors/app_colors.dart';
 
 class BasicAppButton extends StatelessWidget {
@@ -17,6 +16,7 @@ class BasicAppButton extends StatelessWidget {
   final double borderRadius;
   final double fontSize;
   final bool isLoading;
+  final bool isEnabled;
 
   const BasicAppButton({
     super.key,
@@ -33,6 +33,7 @@ class BasicAppButton extends StatelessWidget {
     this.fontSize = 18,
     this.isLoading = false,
     this.vector,
+    this.isEnabled = true,
   });
 
   @override
@@ -42,7 +43,7 @@ class BasicAppButton extends StatelessWidget {
       height: height ?? 53.3,
       width: width,
       child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: (isLoading || !isEnabled) ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           disabledBackgroundColor: backgroundColor.withValues(alpha: 0.5),
@@ -77,14 +78,10 @@ class BasicAppButton extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(width: 8,),
+                    SizedBox(width: 8),
                     if (vector != null) ...[
                       const SizedBox(width: 5),
-                      SvgPicture.asset(
-                        vector!,
-                        width: 20,
-                        height: 20,
-                      ),
+                      SvgPicture.asset(vector!, width: 20, height: 20),
                     ],
                   ],
                 ),

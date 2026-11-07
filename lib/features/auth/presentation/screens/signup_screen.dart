@@ -8,6 +8,7 @@ import 'package:soor_user_app/core/themes/colors/app_colors.dart';
 import 'package:soor_user_app/core/widgets/basic_app_button.dart';
 import 'package:soor_user_app/core/widgets/basic_app_text_field.dart';
 import 'package:soor_user_app/core/widgets/basic_password_field.dart';
+import 'package:soor_user_app/features/auth/data/models/otp_arguments.dart';
 import 'package:soor_user_app/features/auth/presentation/widgets/app_footer.dart';
 import 'package:soor_user_app/features/auth/presentation/widgets/app_header.dart';
 
@@ -21,11 +22,12 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final _phoneController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   String get password => _passwordController.text;
   String get confirmPassword => _confirmPasswordController.text;
@@ -48,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 20.w,),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
@@ -177,7 +179,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                             color: AppColors.primaryColor,
                                             decoration:
                                                 TextDecoration.underline,
-                                            decorationThickness: 4,
+                                            decorationThickness: 1,
                                           ),
                                     ),
                                   ),
@@ -185,10 +187,31 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                               SizedBox(height: 16.h),
                               BasicAppButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (!_isChecked) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'من فضلك وافق على شروط الخصوصية',
+                                        ),
+                                      ),
+                                    );
+                                    return;
+                                  }
+
+                                  if (_formKey.currentState!.validate()) {
+                                    context.push(
+                                      AppRoutes.otp,
+                                      extra: OtpArguments(
+                                        phone: _phoneController.text.trim(),
+                                        flow: OtpFlow.register,
+                                      ),
+                                    );
+                                  }
+                                },
                                 width: double.infinity,
                                 fontSize: 14.sp,
-                                title: 'تسجيل الدخول',
+                                title: 'تسجيل حساب',
                                 vector: AppVectors.arrowLeft,
                               ),
                             ],
@@ -200,11 +223,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             message: 'هل تمتلك حساب بالفعل ؟',
                             action: 'تسجيل دخول',
                             onTap: () {
-                                  context.go(AppRoutes.login);
-                                },
+                              context.go(AppRoutes.login);
+                            },
                           ),
                         ),
-                        SizedBox(height: 8.h,)
+                        SizedBox(height: 8.h),
                       ],
                     ),
                   ),
