@@ -5,6 +5,7 @@ import 'package:soor_user_app/features/auth/data/models/otp_arguments.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/otp_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/signup_screen.dart';
+import 'package:soor_user_app/features/auth/presentation/screens/success_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -30,6 +31,12 @@ class AppRouter {
             return SignupScreen();
           }
           return OtpScreen(phone: extra.phone, flow: extra.flow);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.success,
+        builder: (BuildContext context, GoRouterState state) {
+          return const SuccessScreen();
         },
       ),
     ],

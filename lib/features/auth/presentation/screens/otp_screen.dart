@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:soor_user_app/core/routes/app_routes.dart';
 import 'package:soor_user_app/core/widgets/basic_app_bar.dart';
 import 'package:soor_user_app/core/widgets/basic_app_button.dart';
 import 'package:soor_user_app/features/auth/data/models/otp_arguments.dart';
@@ -54,89 +56,93 @@ class _OtpScreenState extends State<OtpScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            return ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 8.h),
-                            Center(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'التحقق',
-                                    style: Theme.of(context).textTheme.bodyLarge
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 24.sp,
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 8.h),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'التحقق',
+                                      style: Theme.of(context).textTheme.bodyLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24.sp,
+                                          ),
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          'أدخل رمز التحقق الذي نرسله إليك: ',
+                                          style: TextStyle(fontSize: 14.sp),
                                         ),
-                                  ),
-                                  SizedBox(height: 8.h),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        'أدخل رمز التحقق الذي نرسله إليك: ',
-                                        style: TextStyle(fontSize: 14.sp),
-                                      ),
-                                      Text(
-                                        widget.phone,
-                                        style: TextStyle(fontSize: 16.sp),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        Text(
+                                          widget.phone,
+                                          style: TextStyle(fontSize: 16.sp),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 20.h),
-                            Directionality(
-                              textDirection: TextDirection.ltr,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: List.generate(
-                                  otpLength,
-                                  (index) => OtpBox(
-                                    number: otp[index],
-                                    isActive: index == activeIndex,
+                              SizedBox(height: 20.h),
+                              Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: List.generate(
+                                    otpLength,
+                                    (index) => OtpBox(
+                                      number: otp[index],
+                                      isActive: index == activeIndex,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 80.h),
-                            Center(
-                              child: OtpResendTimer(
-                                onResend: () {},
-                                duration: 60,
+                              SizedBox(height: 80.h),
+                              Center(
+                                child: OtpResendTimer(
+                                  onResend: () {},
+                                  duration: 60,
+                                ),
                               ),
-                            ),
-
-                            SizedBox(height: 25.h),
-
-                            BasicAppButton(
-                              onPressed: () {},
-                              title: 'تأكيد',
-                              width: double.infinity,
-                              isEnabled: isOtpComplete,
-                            ),
-                            Spacer(),
-                          ],
+              
+                              SizedBox(height: 25.h),
+              
+                              BasicAppButton(
+                                onPressed: () {
+                                  context.go(AppRoutes.success);
+                                },
+                                title: 'تأكيد',
+                                width: double.infinity,
+                                isEnabled: isOtpComplete,
+                              ),
+                              Spacer(),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    CustomOtpKeyboard(
-                      onNumberPressed: addNumber,
-                      onDeletePressed: removeNumber,
-                    ),
-
-                    SizedBox(height: 18.h),
-                  ],
+                      CustomOtpKeyboard(
+                        onNumberPressed: addNumber,
+                        onDeletePressed: removeNumber,
+                      ),
+              
+                      SizedBox(height: 18.h),
+                    ],
+                  ),
                 ),
               ),
             );

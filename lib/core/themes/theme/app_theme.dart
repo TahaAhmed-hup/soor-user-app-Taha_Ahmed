@@ -23,7 +23,7 @@ class AppTheme {
       fillColor: AppColors.inputFillColor,
       errorStyle: TextStyle(color: AppColors.errorColor, fontSize: 12),
       hintStyle: const TextStyle(
-        color: AppColors.hintTextColor,
+        color: AppColors.appTextSecoundryColor,
         fontWeight: FontWeight.w400,
       ),
       contentPadding: const EdgeInsets.all(16),
