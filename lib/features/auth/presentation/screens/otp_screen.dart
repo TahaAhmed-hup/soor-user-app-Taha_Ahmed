@@ -20,16 +20,11 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   static const int otpLength = 5;
-  static const String otpCheck = '12345';
+  static const String mockOtp = '12345';
 
   final List<String> otp = List.filled(otpLength, '');
 
   bool get isOtpComplete => otp.every((digit) => digit.isNotEmpty);
-
-  
-
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -109,14 +104,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               SizedBox(height: 25.h),
 
                               BasicAppButton(
-                                onPressed: () {
-                                  switch (widget.flow) {
-                                    case OtpFlow.register:
-                                      context.go(AppRoutes.success);
-                                    case OtpFlow.forgetPassword:
-                                      context.push(AppRoutes.resetPassword);
-                                  }
-                                },
+                                onPressed: verifyOtp,
                                 title: 'تأكيد',
                                 width: double.infinity,
                                 isEnabled: isOtpComplete,
@@ -165,13 +153,22 @@ class _OtpScreenState extends State<OtpScreen> {
     });
   }
 
-  void verifyOtp(){
+  void verifyOtp() {
     final enteredOtp = otp.join();
 
-    if(enteredOtp != otpCheck){
-      ScaffoldMessenger.of(context).showMaterialBanner(
-        MaterialBanner(content: Text('رمز التحقق غير صحيح، حاول مرة أخرى'),)
+    if (enteredOtp != mockOtp) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('رمز التحقق غير صحيح، حاول مرة أخرى')),
       );
+      return;
+    }
+    switch (widget.flow) {
+      case OtpFlow.register:
+        context.go(AppRoutes.success);
+        return;
+      case OtpFlow.forgetPassword:
+        context.push(AppRoutes.resetPassword);
+        return;
     }
   }
 }
