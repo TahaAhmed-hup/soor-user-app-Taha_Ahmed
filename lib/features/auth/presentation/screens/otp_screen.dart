@@ -20,32 +20,16 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   static const int otpLength = 5;
+  static const String otpCheck = '12345';
 
   final List<String> otp = List.filled(otpLength, '');
 
   bool get isOtpComplete => otp.every((digit) => digit.isNotEmpty);
 
-  void addNumber(String number) {
-    if (isOtpComplete) return;
+  
 
-    setState(() {
-      final emptyIndex = otp.indexWhere((element) => element.isEmpty);
+  
 
-      if (emptyIndex != -1) {
-        otp[emptyIndex] = number;
-      }
-    });
-  }
-
-  void removeNumber() {
-    int lastIndex = otp.lastIndexWhere((element) => element.isNotEmpty);
-
-    if (lastIndex == -1) return;
-
-    setState(() {
-      otp[lastIndex] = '';
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +58,9 @@ class _OtpScreenState extends State<OtpScreen> {
                                   children: [
                                     Text(
                                       'التحقق',
-                                      style: Theme.of(context).textTheme.bodyLarge
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
                                           ?.copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 24.sp,
@@ -119,12 +105,17 @@ class _OtpScreenState extends State<OtpScreen> {
                                   duration: 60,
                                 ),
                               ),
-              
+
                               SizedBox(height: 25.h),
-              
+
                               BasicAppButton(
                                 onPressed: () {
-                                  context.go(AppRoutes.success);
+                                  switch (widget.flow) {
+                                    case OtpFlow.register:
+                                      context.go(AppRoutes.success);
+                                    case OtpFlow.forgetPassword:
+                                      context.push(AppRoutes.resetPassword);
+                                  }
                                 },
                                 title: 'تأكيد',
                                 width: double.infinity,
@@ -139,7 +130,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         onNumberPressed: addNumber,
                         onDeletePressed: removeNumber,
                       ),
-              
+
                       SizedBox(height: 18.h),
                     ],
                   ),
@@ -150,5 +141,37 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
       ),
     );
+  }
+
+  void addNumber(String number) {
+    if (isOtpComplete) return;
+
+    setState(() {
+      final emptyIndex = otp.indexWhere((element) => element.isEmpty);
+
+      if (emptyIndex != -1) {
+        otp[emptyIndex] = number;
+      }
+    });
+  }
+
+  void removeNumber() {
+    int lastIndex = otp.lastIndexWhere((element) => element.isNotEmpty);
+
+    if (lastIndex == -1) return;
+
+    setState(() {
+      otp[lastIndex] = '';
+    });
+  }
+
+  void verifyOtp(){
+    final enteredOtp = otp.join();
+
+    if(enteredOtp != otpCheck){
+      ScaffoldMessenger.of(context).showMaterialBanner(
+        MaterialBanner(content: Text('رمز التحقق غير صحيح، حاول مرة أخرى'),)
+      );
+    }
   }
 }
