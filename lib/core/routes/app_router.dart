@@ -5,6 +5,8 @@ import 'package:soor_user_app/features/auth/data/models/otp_arguments.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/otp_screen.dart';
+import 'package:soor_user_app/features/auth/presentation/screens/password_changed_screen.dart';
+import 'package:soor_user_app/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/signup_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/success_screen.dart';
 
@@ -44,6 +46,18 @@ class AppRouter {
         path: AppRoutes.forgetPassword,
         builder: (BuildContext context, GoRouterState state) {
           return ForgetPasswordScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.resetPassword,
+        builder: (BuildContext context, GoRouterState state) {
+          return ResetPasswordScreen();
+        },
+      ),
+       GoRoute(
+        path: AppRoutes.passwordChanged,
+        builder: (BuildContext context, GoRouterState state) {
+          return PasswordChangedScreen();
         },
       ),
     ],
