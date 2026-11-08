@@ -101,8 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 24.h),
                         Center(
-                          child: InkWell(
-                            onTap: () {},
+                          child: TextButton(
+                            onPressed: () {
+                              context.push(AppRoutes.forgetPassword);
+                            },
                             child: Text(
                               'هل نسيت كلمة المرور؟',
                               style: Theme.of(context).textTheme.bodyMedium
