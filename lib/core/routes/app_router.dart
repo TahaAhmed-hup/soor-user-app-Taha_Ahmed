@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soor_user_app/core/routes/app_routes.dart';
 import 'package:soor_user_app/features/auth/data/models/otp_arguments.dart';
+import 'package:soor_user_app/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/otp_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/signup_screen.dart';
@@ -37,6 +38,12 @@ class AppRouter {
         path: AppRoutes.success,
         builder: (BuildContext context, GoRouterState state) {
           return const SuccessScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.forgetPassword,
+        builder: (BuildContext context, GoRouterState state) {
+          return ForgetPasswordScreen();
         },
       ),
     ],
