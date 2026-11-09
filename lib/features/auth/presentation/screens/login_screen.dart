@@ -117,7 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 16.h),
                         BasicAppButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.go(AppRoutes.home);
+                          },
                           width: double.infinity,
                           fontSize: 14.sp,
                           title: 'تسجيل الدخول',
