@@ -11,4 +11,5 @@ class AppColors {
   static const otpBoxColor = Color(0xFF252525);
   static const otpActiveBorderColor = Color(0xFF36BDEB);
   static const otpKeyColor = Color(0xFF666666);
+  static const navBarBackground = Color(0xFF161619);
 }
