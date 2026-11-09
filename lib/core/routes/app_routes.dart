@@ -7,5 +7,9 @@ class AppRoutes {
   static const String forgetPassword = '/forgetPassword';
   static const String resetPassword = '/resetPassword';
   static const String passwordChanged = '/passwordChanged';
-
+  static const String home = '/home';
+  static const String service = '/services';
+  static const String booking = '/bookings';
+  static const String more = '/more';
+  static const String main = '/main';
 }

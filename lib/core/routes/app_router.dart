@@ -9,6 +9,11 @@ import 'package:soor_user_app/features/auth/presentation/screens/password_change
 import 'package:soor_user_app/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/signup_screen.dart';
 import 'package:soor_user_app/features/auth/presentation/screens/success_screen.dart';
+import 'package:soor_user_app/features/home/presentation/screens/home_screen.dart';
+import 'package:soor_user_app/features/home/presentation/screens/main_screen.dart';
+import 'package:soor_user_app/features/home/presentation/screens/services_screen.dart';
+import 'package:soor_user_app/features/orders/presentation/screens/bookings_screen.dart';
+import 'package:soor_user_app/features/settings/presentation/screens/more_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -54,11 +59,55 @@ class AppRouter {
           return ResetPasswordScreen();
         },
       ),
-       GoRoute(
+      GoRoute(
         path: AppRoutes.passwordChanged,
         builder: (BuildContext context, GoRouterState state) {
           return PasswordChangedScreen();
         },
+      ),
+      StatefulShellRoute.indexedStack(
+        builder:
+            (
+              BuildContext context,
+              GoRouterState state,
+              StatefulNavigationShell navigationShell,
+            ) {
+              return MainScreen(navigationShell: navigationShell);
+            },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                builder: (context, state) => HomeScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.service,
+                builder: (context, state) => ServicesScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.booking,
+                builder: (context, state) => BookingsScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.more,
+                builder: (context, state) => MoreScreen(),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );
