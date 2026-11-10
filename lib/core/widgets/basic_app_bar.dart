@@ -10,6 +10,8 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hideBack;
   final double? height;
   final TextStyle? titleStyle;
+  final bool centerTitle;
+  final Widget? title;
 
   const BasicAppBar({
     this.titleText,
@@ -19,7 +21,9 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.titleStyle,
     this.actions,
+    this.centerTitle = true,
     super.key,
+    this.title,
   });
 
   @override
@@ -31,11 +35,11 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
           Colors.transparent,
       elevation: 0,
       actions: actions,
-      centerTitle: true,
+      centerTitle: centerTitle,
       automaticallyImplyLeading: false,
       toolbarHeight: height ?? _defaultHeight,
       titleSpacing: 0,
-      title: titleText != null
+      title: title ?? (titleText != null
           ? Text(
               titleText!,
               style:
@@ -46,7 +50,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: Colors.white,
                   ),
             )
-          : const SizedBox.shrink(),
+          : const SizedBox.shrink()),
       leading:
           leading ??
           (hideBack
