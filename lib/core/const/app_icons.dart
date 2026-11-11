@@ -5,4 +5,6 @@ class AppIcons {
   static const booking = '${basePath}bookings.svg';
   static const more = '${basePath}more.svg';
   static const notification = '${basePath}notification.svg';
+  static const arrowLeft = '${basePath}arrow_left.svg';
+
 }

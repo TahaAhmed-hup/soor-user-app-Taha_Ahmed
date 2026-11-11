@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:soor_user_app/core/const/app_icons.dart';
 import 'package:soor_user_app/core/widgets/basic_app_bar.dart';
 import 'package:soor_user_app/features/auth/presentation/widgets/app_header.dart';
+import 'package:soor_user_app/features/home/data/mock_data.dart';
+import 'package:soor_user_app/features/home/presentation/widgets/custom_offer_banner.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,18 +27,34 @@ class _HomeScreenState extends State<HomeScreen> {
         hideBack: true,
         actions: [
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 2.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey.withValues(alpha: 0.12),
-                border: Border.all(
-                                color: Colors.grey.withValues(alpha: 0.12),
-                ),
-                borderRadius: BorderRadius.circular(30.r)
+                border: Border.all(color: Colors.grey.withValues(alpha: 0.12)),
+                borderRadius: BorderRadius.circular(30.r),
               ),
-              child: IconButton(onPressed: (){}, icon: SvgPicture.asset(AppIcons.notification,width: 20.w,))),
-          )
+              child: IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(AppIcons.notification, width: 20.w),
+              ),
+            ),
+          ),
         ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 8.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomOfferBanner(offers: MockData.offers),
+                
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
