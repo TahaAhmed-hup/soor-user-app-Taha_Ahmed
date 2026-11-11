@@ -6,5 +6,6 @@ class AppIcons {
   static const more = '${basePath}more.svg';
   static const notification = '${basePath}notification.svg';
   static const arrowLeft = '${basePath}arrow_left.svg';
-
+  static const person = '${basePath}person.svg';
+  static const people = '${basePath}people.svg';
 }

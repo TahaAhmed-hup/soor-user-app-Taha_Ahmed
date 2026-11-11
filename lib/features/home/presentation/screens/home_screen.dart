@@ -6,6 +6,8 @@ import 'package:soor_user_app/core/widgets/basic_app_bar.dart';
 import 'package:soor_user_app/features/auth/presentation/widgets/app_header.dart';
 import 'package:soor_user_app/features/home/data/mock_data.dart';
 import 'package:soor_user_app/features/home/presentation/widgets/custom_offer_banner.dart';
+import 'package:soor_user_app/features/home/presentation/widgets/section_header.dart';
+import 'package:soor_user_app/features/home/presentation/widgets/service_circle.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -50,7 +52,31 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomOfferBanner(offers: MockData.offers),
-                
+                SizedBox(height: 16.h,),
+                Column(
+                  children: [
+                    SectionHeader(title: 'الخدمات',onSeemore: (){},),
+                    SizedBox(height: 12.h,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ServiceCircle(
+                        service: MockData.services[0],
+                        onTap: () {
+                          
+                        },
+                      ),
+                      SizedBox(width: 16.w,),
+                      ServiceCircle(
+                        service: MockData.services[1],
+                        onTap: () {
+                          
+                        },
+                      )
+                    ],  
+                    )
+                  ],
+                ),
               ],
             ),
           ),

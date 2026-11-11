@@ -9,6 +9,10 @@ class AppTheme {
       bodyLarge: TextStyle(color: AppColors.appTextColor),
       bodyMedium: TextStyle(color: AppColors.appTextColor),
       bodySmall: TextStyle(color: AppColors.appTextColor),
+      titleLarge: TextStyle(color: AppColors.appTextColor),
+      titleMedium: TextStyle(color: AppColors.appTextColor),
+      titleSmall: TextStyle(color: AppColors.appTextColor),
+      
     ),
     appBarTheme: AppBarTheme(backgroundColor: AppColors.appBarColor),
     scaffoldBackgroundColor: AppColors.backgroundColor,
