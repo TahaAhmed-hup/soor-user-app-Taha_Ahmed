@@ -7,6 +7,7 @@ import 'package:soor_user_app/features/auth/presentation/widgets/app_header.dart
 import 'package:soor_user_app/features/home/data/mock_data.dart';
 import 'package:soor_user_app/features/home/presentation/widgets/current_booking_card.dart';
 import 'package:soor_user_app/features/home/presentation/widgets/custom_offer_banner.dart';
+import 'package:soor_user_app/features/home/presentation/widgets/customer_review_card.dart';
 import 'package:soor_user_app/features/home/presentation/widgets/section_header.dart';
 import 'package:soor_user_app/features/home/presentation/widgets/service_circle.dart';
 
@@ -48,49 +49,56 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomOfferBanner(offers: MockData.offers),
-                SizedBox(height: 16.h,),
+                SizedBox(height: 16.h),
                 Column(
                   children: [
-                    SectionHeader(title: 'الخدمات',onSeemore: (){},),
-                    SizedBox(height: 12.h,),
+                    SectionHeader(title: 'الخدمات', onSeemore: () {}),
+                    SizedBox(height: 12.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ServiceCircle(
-                        service: MockData.services[0],
-                        onTap: () {
-                          
-                        },
-                      ),
-                      SizedBox(width: 16.w,),
-                      ServiceCircle(
-                        service: MockData.services[1],
-                        onTap: () {
-                          
-                        },
-                      )
-                    ],  
-                    )
+                      children: [
+                        ...MockData.services.map(
+                          (service) => Padding(
+                            padding: EdgeInsets.only(left: 16.w),
+                            child: ServiceCircle(service: service),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                SizedBox(height: 16.h,),
+                SizedBox(height: 16.h),
                 Column(
                   children: [
                     SectionHeader(title: 'الحجز الحالى'),
-                    SizedBox(height: 12.h,),
+                    SizedBox(height: 12.h),
                     CurrentBookingCard(
                       booking: MockData.currentBooking,
-                      onreview: () {
-                        
-                      },
-                    )
+                      onreview: () {},
+                    ),
                   ],
-                )
+                ),
+                SizedBox(height: 16.h),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SectionHeader(title: 'اراء عملائنا'),
+
+                    SizedBox(height: 12.h),
+
+                    ...MockData.reviews.map(
+                      (review) => Padding(
+                        padding: EdgeInsets.only(bottom: 8.h),
+                        child: CustomerReviewCard(review: review),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

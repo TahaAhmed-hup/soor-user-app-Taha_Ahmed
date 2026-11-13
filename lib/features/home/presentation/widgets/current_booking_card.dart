@@ -18,7 +18,7 @@ class CurrentBookingCard extends StatelessWidget {
         vertical: 16.h
       ),
       decoration: BoxDecoration(
-        color: Color(0xFF141414),
+        color: AppColors.appBarColor,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -55,14 +55,14 @@ class CurrentBookingCard extends StatelessWidget {
               ),
               Text(
                 booking.time,
-                style: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                style: TextStyle(color: AppColors.appTextSecoundryColor, fontSize: 14.sp),
               ),
             ],
           ),
           SizedBox(height: 10.h),
 
           Align(
-            alignment: AlignmentGeometry.centerRight,
+            alignment: AlignmentDirectional.centerStart,
             child: InkWell(
               onTap: onreview,
               child: Row(
@@ -73,7 +73,7 @@ class CurrentBookingCard extends StatelessWidget {
                     style: TextStyle(color: Color(0XFF2D9EC4), fontSize: 14.sp),
                   ),
                   SizedBox(width: 8.w),
-                  Icon(Icons.arrow_forward_ios, color: Color(0XFF2D9EC4), size: 14.sp),
+                  Icon(Icons.arrow_forward_ios, color: Color(0XFF2D9EC4), size: 14.w),
                 ],
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:soor_user_app/core/const/app_icons.dart';
 import 'package:soor_user_app/core/themes/colors/app_colors.dart';
 import 'package:soor_user_app/features/home/models/booking_model.dart';
 import 'package:soor_user_app/features/home/models/offer_model.dart';
+import 'package:soor_user_app/features/home/models/review_model.dart';
 import 'package:soor_user_app/features/home/models/service_model.dart';
 
 class MockData {
@@ -33,4 +34,22 @@ class MockData {
     price: '1600',
     currency: 'ريال',
   );
+
+  static const List<ReviewModel> reviews = [
+    ReviewModel(
+      customerName: 'على احمد ابراهيم',
+       comment: 'خدمة ممتازة مع الالتزام فى المواعيد',
+        rating: 5
+        ),
+        ReviewModel(
+      customerName: 'على احمد ابراهيم',
+       comment: 'خدمة ممتازة مع الالتزام فى المواعيد',
+        rating: 4.5
+        ),
+        ReviewModel(
+      customerName: 'على احمد ابراهيم',
+       comment: 'خدمة ممتازة مع الالتزام فى المواعيد',
+        rating: 3
+        ),
+  ];
 }
