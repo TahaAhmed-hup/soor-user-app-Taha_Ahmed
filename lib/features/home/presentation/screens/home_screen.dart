@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:soor_user_app/core/const/app_icons.dart';
+import 'package:soor_user_app/core/routes/app_routes.dart';
 import 'package:soor_user_app/core/widgets/basic_app_bar.dart';
 import 'package:soor_user_app/features/auth/presentation/widgets/app_header.dart';
 import 'package:soor_user_app/features/home/data/mock_data.dart';
@@ -57,7 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 16.h),
                 Column(
                   children: [
-                    SectionHeader(title: 'الخدمات', onSeemore: () {}),
+                    SectionHeader(
+                      title: 'الخدمات',
+                      onSeemore: () {
+                        context.go(AppRoutes.service);
+                      },
+                    ),
                     SizedBox(height: 12.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
